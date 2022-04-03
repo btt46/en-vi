@@ -1,4 +1,6 @@
-env LC_ALL=en_US.UTF-8 
+src=en
+tgt=vi
+
 HOME=/home/tbui
 EXPDIR=$PWD
 
@@ -43,8 +45,6 @@ if [ ! -d $BIN_DATA ]; then
     mkdir -p $BIN_DATA
 fi
 
-src=en
-tgt=vi
 
 # Normalization
 echo "=> Normalizing...."
