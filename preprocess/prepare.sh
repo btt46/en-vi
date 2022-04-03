@@ -50,7 +50,7 @@ tgt=vi
 echo "=> Normalizing...."
 for lang in $src $tgt; do 
     for set in $DATASET_NAME; do
-        python3.6 ${EXPDIR}/preprocess/normalize.py ${DATA}/${set}.${lang} \
+        python3.6 ${EXPDIR}/preprocess/normalize.py ${DATASET}/${set}.${lang} \
                                         ${NORMALIZED_DATA}/${set}.${lang}
     done
 done
