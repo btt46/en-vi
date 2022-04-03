@@ -58,21 +58,21 @@ done
 # Tokenization
 echo "=> Tokenizing...."
 for SET in $DATASET_NAME; do
-    $TOKENIZER -l en < ${NORMALIZED_DATA}/${SET}.en > ${TOKENIZED_DATA}/${SET}.en
-    python3.6 {EXPDIR}/preprocess/tokenize-vi.py ${NORMALIZED_DATA}/${SET}.vi ${TOKENIZED_DATA}/${SET}.vi
+    env LC_ALL=en_US.UTF-8  $TOKENIZER -l en < ${NORMALIZED_DATA}/${SET}.en > ${TOKENIZED_DATA}/${SET}.en
+    python3.6 ${EXPDIR}/preprocess/tokenize-vi.py ${NORMALIZED_DATA}/${SET}.vi ${TOKENIZED_DATA}/${SET}.vi
 done
 
 # Truecaser
 echo "=>  Truecasing...."
 echo "Traning for english..."
-$TRUECASER_TRAIN --model truecase-model.en --corpus ${TOKENIZED_DATA}/train.en
+env LC_ALL=en_US.UTF-8  $TRUECASER_TRAIN --model truecase-model.en --corpus ${TOKENIZED_DATA}/train.en
 
 echo "Traning for vietnamese..."
-$TRUECASER_TRAIN --model truecase-model.vi --corpus ${TOKENIZED_DATA}/train.vi
+env LC_ALL=en_US.UTF-8  $TRUECASER_TRAIN --model truecase-model.vi --corpus ${TOKENIZED_DATA}/train.vi
 
 for lang in $src $tgt; do
     for set in $DATA_NAME; do
-        $TRUECASER --model truecase-model.${lang} < ${TOKENIZED_DATA}/${set}.${lang} > ${TRUECASED_DATA}/${set}.${lang}
+        env LC_ALL=en_US.UTF-8 $TRUECASER --model truecase-model.${lang} < ${TOKENIZED_DATA}/${set}.${lang} > ${TRUECASED_DATA}/${set}.${lang}
     done
 done
 
@@ -81,11 +81,11 @@ cat ${TOKENIZED_DATA}/train.en ${TOKENIZED_DATA}/train.vi > $DATASET/tmp/train.e
 # learn bpe model with training data
 echo "=> LEARNING BPE MODEL...."
 
-subword-nmt learn-bpe -s ${BPE_TOKENS} < $DATASET/tmp/train.en-vi > $DATASET/tmp/en-vi.bpe.${BPE_TOKENS}.model
+env LC_ALL=en_US.UTF-8 subword-nmt learn-bpe -s ${BPE_TOKENS} < $DATASET/tmp/train.en-vi > $DATASET/tmp/en-vi.bpe.${BPE_TOKENS}.model
 
 for SET in $DATASET_NAME; do
     for lang in $src $tgt; do
-        subword-nmt apply-bpe -c $DATASET/tmp/en-vi.bpe.${BPE_TOKENS}.model < ${TOKENIZED_DATA}/${SET}.${lang} > $BPE_DATA/${SET}.${lang}
+        env LC_ALL=en_US.UTF-8 subword-nmt apply-bpe -c $DATASET/tmp/en-vi.bpe.${BPE_TOKENS}.model < ${TOKENIZED_DATA}/${SET}.${lang} > $BPE_DATA/${SET}.${lang}
     done
 done
 
