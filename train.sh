@@ -23,5 +23,5 @@ CUDA_VISIBLE_DEVICES=$GPUS fairseq-train $BIN_DATA -s ${SRC} -t ${TGT} \
                     --eval-bleu-print-samples \
                     --best-checkpoint-metric bleu --maximize-best-checkpoint-metric \
 					--save-dir $EXPDIR/models/$MODEL_NAME \
-					2>&1 | tee $LOG/${MODEL_NAME}
+					2>&1 | tee $PWD/logs/${MODEL_NAME}
 
