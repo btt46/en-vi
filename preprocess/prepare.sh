@@ -65,14 +65,14 @@ done
 # Truecaser
 echo "=>  Truecasing...."
 echo "Traning for english..."
-env LC_ALL=en_US.UTF-8  $TRUECASER_TRAIN --model truecase-model.en --corpus ${TOKENIZED_DATA}/train.en
+env LC_ALL=en_US.UTF-8  $TRUECASER_TRAIN --model $DATASET/tmp/truecase-model.en --corpus ${TOKENIZED_DATA}/train.en
 
 echo "Traning for vietnamese..."
-env LC_ALL=en_US.UTF-8  $TRUECASER_TRAIN --model truecase-model.vi --corpus ${TOKENIZED_DATA}/train.vi
+env LC_ALL=en_US.UTF-8  $TRUECASER_TRAIN --model $DATASET/tmp/truecase-model.vi --corpus ${TOKENIZED_DATA}/train.vi
 
 for lang in $src $tgt; do
     for set in $DATA_NAME; do
-        env LC_ALL=en_US.UTF-8 $TRUECASER --model truecase-model.${lang} < ${TOKENIZED_DATA}/${set}.${lang} > ${TRUECASED_DATA}/${set}.${lang}
+        env LC_ALL=en_US.UTF-8 $TRUECASER --model $DATASET/tmp/truecase-model.${lang} < ${TOKENIZED_DATA}/${set}.${lang} > ${TRUECASED_DATA}/${set}.${lang}
     done
 done
 
