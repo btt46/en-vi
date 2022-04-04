@@ -76,7 +76,7 @@ for lang in $src $tgt; do
     done
 done
 
-cat ${TOKENIZED_DATA}/train.en ${TOKENIZED_DATA}/train.vi > $DATASET/tmp/train.en-vi
+cat ${TRUECASED_DATA}/train.en ${TRUECASED_DATA}/train.vi > $DATASET/tmp/train.en-vi
 
 # learn bpe model with training data
 echo "=> LEARNING BPE MODEL...."
