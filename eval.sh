@@ -4,11 +4,11 @@ EXPDIR=$PWD
 SCRIPTS=${HOME}/mosesdecoder/scripts
 DETRUECASER=${SCRIPTS}/recaser/detruecase.perl
 
-GPUS=$1
-MODEL_NAME=$2
+src=$1
+tgt=$2
+GPUS=$3
+MODEL_NAME=$4
 MODEL=$PWD/models/${MODEL_NAME}/checkpoint_best.pt
-src=en
-tgt=vi
 
 DATASET=$PWD/data
 BPE_DATA=$DATASET/tmp/bpe-data

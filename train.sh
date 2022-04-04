@@ -1,8 +1,8 @@
-src=en
-tgt=vi
+src=$1
+tgt=$2
 
-GPUS=$1
-MODEL_NAME=$2
+GPUS=$3
+MODEL_NAME=$4
 
 EXPDIR=$PWD
 DATASET=$PWD/data

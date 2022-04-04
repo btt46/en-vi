@@ -1,5 +1,5 @@
-src=en
-tgt=vi
+src=$1
+tgt=$2
 
 HOME=/home/tbui
 EXPDIR=$PWD
