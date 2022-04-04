@@ -71,7 +71,7 @@ echo "Traning for vietnamese..."
 env LC_ALL=en_US.UTF-8  $TRUECASER_TRAIN --model $DATASET/tmp/truecase-model.vi --corpus ${TOKENIZED_DATA}/train.vi
 
 for lang in $src $tgt; do
-    for set in $DATA_NAME; do
+    for set in $DATASET_NAME; do
         env LC_ALL=en_US.UTF-8 $TRUECASER --model $DATASET/tmp/truecase-model.${lang} < ${TOKENIZED_DATA}/${set}.${lang} > ${TRUECASED_DATA}/${set}.${lang}
     done
 done
