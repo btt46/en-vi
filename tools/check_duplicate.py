@@ -20,7 +20,7 @@ def main():
         ref_contents = fp.readlines()
         fp.close()
 
-    score = []
+    score = 0
     for line in input_contents:
         if line in ref_contents:
             score += 1
