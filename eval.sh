@@ -30,9 +30,9 @@ $DETRUECASER < ${PWD}/results/${MODEL_NAME}/valid_rmvbpe.${tgt} > ${PWD}/results
 
 # detokenize
 python3.6 $PWD/postprocess/detokenize.py ${PWD}/results/${MODEL_NAME}/valid_detruecase.${tgt} ${PWD}/results/${MODEL_NAME}/valid.${tgt}
-
+python3.6 $PWD/preprocess/normalize.py ${PWD}/results/${MODEL_NAME}/valid.${tgt} ${PWD}/results/${MODEL_NAME}/valid_normalize.${tgt}
 echo "VALID" >> ${PWD}/results/${MODEL_NAME}/valid_result.txt
-env LC_ALL=en_US.UTF-8 perl $PWD/multi-bleu.pl $PWD/data/tmp/normalized/valid.${tgt} < ${PWD}/results/${MODEL_NAME}/valid.${tgt} >> ${PWD}/results/${MODEL_NAME}/valid_result.txt
+env LC_ALL=en_US.UTF-8 perl $PWD/multi-bleu.pl $PWD/data/tmp/normalized/valid.${tgt} < ${PWD}/results/${MODEL_NAME}/valid_normalize.${tgt} >> ${PWD}/results/${MODEL_NAME}/valid_result.txt
 
 ########################## Test dataset #########################################
 
@@ -49,7 +49,7 @@ $DETRUECASER < ${PWD}/results/${MODEL_NAME}/test_rmvbpe.${tgt} > ${PWD}/results/
 
 # detokenize
 python3.6 $PWD/postprocess/detokenize.py ${PWD}/results/${MODEL_NAME}/test_detruecase.${tgt} ${PWD}/results/${MODEL_NAME}/test.${tgt}
-
+python3.6 $PWD/preprocess/normalize.py ${PWD}/results/${MODEL_NAME}/test.${tgt} ${PWD}/results/${MODEL_NAME}/test_normalize.${tgt}
 echo "TEST" >> ${PWD}/results/${MODEL_NAME}/test_result.txt
-env LC_ALL=en_US.UTF-8 perl $PWD/multi-bleu.pl $PWD/data/tmp/normalized/test.${tgt} < ${PWD}/results/${MODEL_NAME}/test.${tgt} >> ${PWD}/results/${MODEL_NAME}/test_result.txt
+env LC_ALL=en_US.UTF-8 perl $PWD/multi-bleu.pl $PWD/data/tmp/normalized/test.${tgt} < ${PWD}/results/${MODEL_NAME}/test_normalize.${tgt} >> ${PWD}/results/${MODEL_NAME}/test_result.txt
 
