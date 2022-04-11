@@ -85,7 +85,7 @@ env LC_ALL=en_US.UTF-8 subword-nmt learn-bpe -s ${BPE_TOKENS} < $DATASET/tmp/tra
 
 for SET in $DATASET_NAME; do
     for lang in $src $tgt; do
-        env LC_ALL=en_US.UTF-8 subword-nmt apply-bpe -c $DATASET/tmp/en-vi.bpe.${BPE_TOKENS}.model < ${TOKENIZED_DATA}/${SET}.${lang} > $BPE_DATA/${SET}.${lang}
+        env LC_ALL=en_US.UTF-8 subword-nmt apply-bpe -c $DATASET/tmp/en-vi.bpe.${BPE_TOKENS}.model < ${TRUECASED_DATA}/${SET}.${lang} > $BPE_DATA/${SET}.${lang}
     done
 done
 
